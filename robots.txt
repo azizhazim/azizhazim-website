@@ -1,0 +1,6 @@
+# robots.txt for azizhazim.com
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://azizhazim.com/sitemap.xml
