@@ -98,12 +98,14 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            height: 40px;
+            width: auto;
+            border-radius: 8px;
         }
 
         .nav-links {
@@ -922,7 +924,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">AH</div>
+            <div class="logo"><img src="favicon.svg" alt="Aziz Hazim" class="logo-icon"></div>
             <ul class="nav-links">
                 <li><a href="#showcase">Work</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
@@ -1045,9 +1047,9 @@
                     <i class="fas fa-server"></i>
                 </div>
                 <div class="portfolio-info">
-                    <span class="portfolio-type">Backend</span>
-                    <h3>Cloud Valkyrie Storage</h3>
-                    <p>Scalable cloud storage solution with advanced file management</p>
+                    <span class="portfolio-type">AI Tool</span>
+                    <h3>Aura Lead Gen</h3>
+                    <p>AI-powered lead generation tool that captures tailored leads automatically</p>
                 </div>
             </div>
 
@@ -1103,7 +1105,7 @@
                 <div class="about-stats">
                     <div class="stat">
                         <div class="stat-number">8K+</div>
-                        <div class="stat-label">Chrome Users</div>
+                        <div class="stat-label">Users</div>
                     </div>
                     <div class="stat">
                         <div class="stat-number">15+</div>
