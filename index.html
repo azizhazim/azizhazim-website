@@ -521,6 +521,43 @@
             font-size: 0.9rem;
         }
 
+        .portfolio-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .portfolio-tech span {
+            font-size: 0.7rem;
+            background: rgba(17, 138, 255, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid rgba(17, 138, 255, 0.2);
+        }
+
+        .portfolio-card.coming-soon {
+            opacity: 0.7;
+            cursor: default;
+        }
+
+        .portfolio-card.coming-soon:hover {
+            transform: none;
+        }
+
+        a.portfolio-card {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .showcase-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
         /* About Section */
         .about-container {
             display: grid;
@@ -945,7 +982,7 @@
         </div>
         <div class="hero-content">
             <div class="hero-badge">
-                <i class="fas fa-bolt"></i> Available for new projects
+                <i class="fas fa-bolt"></i> Building AI-powered solutions
             </div>
             <h1>Aziz <span>Hazim</span></h1>
             <p class="hero-title">AI & iOS App Developer</p>
@@ -979,8 +1016,13 @@
                             <span class="tag">Chrome Extension</span>
                             <span class="tag">iOS App</span>
                             <span class="tag">AI Vision Models</span>
+                            <span class="tag">SwiftUI</span>
+                            <span class="tag">JavaScript</span>
                         </div>
-                        <a href="#" class="btn btn-primary">Learn More</a>
+                        <div class="showcase-buttons">
+                            <a href="https://apexvision.ai/" class="btn btn-primary" target="_blank">Visit Website</a>
+                            <a href="https://chromewebstore.google.com/detail/ai-homework-helper-apex-v/ncaknkaehhieldhnmimbjnfgneaiijbd" class="btn btn-secondary" target="_blank">Chrome Store</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1020,7 +1062,7 @@
         </div>
 
         <div class="portfolio-grid">
-            <div class="portfolio-card reveal">
+            <a href="https://apexvision.ai/" target="_blank" class="portfolio-card reveal">
                 <div class="portfolio-image">
                     <i class="fab fa-apple"></i>
                 </div>
@@ -1028,10 +1070,13 @@
                     <span class="portfolio-type">iOS App</span>
                     <h3>Apex Vision Mobile</h3>
                     <p>Native iOS app with SwiftUI for on-the-go AI image analysis</p>
+                    <div class="portfolio-tech">
+                        <span>SwiftUI</span><span>OpenAI API</span><span>CoreML</span>
+                    </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-card reveal">
+            <a href="https://chromewebstore.google.com/detail/ai-homework-helper-apex-v/ncaknkaehhieldhnmimbjnfgneaiijbd" target="_blank" class="portfolio-card reveal">
                 <div class="portfolio-image">
                     <i class="fab fa-chrome"></i>
                 </div>
@@ -1039,10 +1084,13 @@
                     <span class="portfolio-type">Chrome Extension</span>
                     <h3>Apex Vision Chrome</h3>
                     <p>Browser extension for instant AI-powered image insights</p>
+                    <div class="portfolio-tech">
+                        <span>JavaScript</span><span>Chrome APIs</span><span>OpenAI</span>
+                    </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-card reveal">
+            <a href="https://auraleadgen.com/" target="_blank" class="portfolio-card reveal">
                 <div class="portfolio-image">
                     <i class="fas fa-server"></i>
                 </div>
@@ -1050,10 +1098,13 @@
                     <span class="portfolio-type">AI Tool</span>
                     <h3>Aura Lead Gen</h3>
                     <p>AI-powered lead generation tool that captures tailored leads automatically</p>
+                    <div class="portfolio-tech">
+                        <span>Python</span><span>AI/ML</span><span>Web Scraping</span>
+                    </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-card reveal">
+            <a href="https://github.com/azizhazim/greener_Earth_Projects" target="_blank" class="portfolio-card reveal">
                 <div class="portfolio-image">
                     <i class="fas fa-leaf"></i>
                 </div>
@@ -1061,21 +1112,27 @@
                     <span class="portfolio-type">Open Source</span>
                     <h3>Green Earth Projects</h3>
                     <p>Coding solutions for sustainability and renewable energy</p>
+                    <div class="portfolio-tech">
+                        <span>Python</span><span>Data Analysis</span><span>GitHub</span>
+                    </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-card reveal">
+            <div class="portfolio-card reveal coming-soon">
                 <div class="portfolio-image">
                     <i class="fas fa-cube"></i>
                 </div>
                 <div class="portfolio-info">
-                    <span class="portfolio-type">AI Tool</span>
+                    <span class="portfolio-type">AI Tool • Coming Soon</span>
                     <h3>Deal Flip AI</h3>
                     <p>AI-powered scraper that finds the best deals on Facebook Marketplace</p>
+                    <div class="portfolio-tech">
+                        <span>Python</span><span>AI/ML</span><span>Automation</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="portfolio-card reveal">
+            <a href="https://hazimautoservice.com/" target="_blank" class="portfolio-card reveal">
                 <div class="portfolio-image">
                     <i class="fas fa-car"></i>
                 </div>
@@ -1083,8 +1140,11 @@
                     <span class="portfolio-type">Business</span>
                     <h3>Hazim Auto Service</h3>
                     <p>Full-service auto repair shop with online scheduling</p>
+                    <div class="portfolio-tech">
+                        <span>Web Design</span><span>Booking System</span>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -1100,7 +1160,7 @@
                 <span class="section-badge">About Me</span>
                 <h2>Building the Future, One Line at a Time</h2>
                 <p>I'm an Information Systems & Technology graduate (BBA, Class of 2025) and full-stack developer specializing in iOS apps and AI-powered solutions. My journey took me from Penn State to Texas State University's McCoy College of Business, where I honed my skills in technology and business strategy.</p>
-                <p>I believe in building fast, clean, and user-ready applications. Whether it's a Chrome extension with 8,000+ users or a complex AI integration, I focus on delivering polished products that solve real problems.</p>
+                <p>My superpower? Taking complex real-world problems and delivering clear, efficient solutions in record time. Whether it's a Chrome extension with 8,000+ users or a complex AI integration, I focus on shipping polished products that actually solve problems.</p>
 
                 <div class="about-stats">
                     <div class="stat">
@@ -1189,9 +1249,9 @@
                         <i class="fab fa-github"></i>
                         <span>github.com/azizhazim</span>
                     </a>
-                    <a href="https://linkedin.com/in/azizhazim" class="contact-link" target="_blank">
+                    <a href="https://www.linkedin.com/in/aziz-hazim/" class="contact-link" target="_blank">
                         <i class="fab fa-linkedin"></i>
-                        <span>linkedin.com/in/azizhazim</span>
+                        <span>linkedin.com/in/aziz-hazim</span>
                     </a>
                     <a href="mailto:contact@azizhazim.com" class="contact-link">
                         <i class="fas fa-envelope"></i>
@@ -1238,8 +1298,7 @@
             </div>
             <div class="social-links">
                 <a href="https://github.com/azizhazim" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/azizhazim" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://twitter.com/azizhazim" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/aziz-hazim/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <p class="copyright">&copy; 2025 Aziz Hazim. All rights reserved.</p>
         </div>
