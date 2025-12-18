@@ -89,6 +89,12 @@
             transition: all 0.3s ease;
         }
 
+		nav.scrolled {
+			background: rgba(10, 10, 15, 0.95);
+			box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+			border-bottom-color: rgba(255, 255, 255, 0.08);
+		}
+
         .nav-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -316,6 +322,14 @@
             margin: 0 auto;
         }
 
+		.section-alt {
+			background:
+				radial-gradient(120% 120% at 0% 0%, rgba(17, 138, 255, 0.12) 0%, transparent 55%),
+				radial-gradient(100% 140% at 100% 100%, rgba(132, 188, 207, 0.07) 0%, transparent 60%),
+				var(--bg-dark);
+			border-radius: 28px;
+		}
+
         .section-header {
             text-align: center;
             margin-bottom: 4rem;
@@ -403,6 +417,21 @@
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
+
+		.showcase-metrics {
+			list-style: none;
+			padding: 0;
+			margin: 0 0 1.5rem;
+			display: grid;
+			gap: 0.4rem;
+			font-size: 0.95rem;
+			color: var(--text-secondary);
+		}
+
+		.showcase-metrics li span {
+			font-weight: 600;
+			color: var(--text-primary);
+		}
 
         .showcase-tags {
             display: flex;
@@ -608,6 +637,27 @@
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
         }
+
+		.about-highlights {
+			list-style: none;
+			padding: 0;
+			margin: 1.25rem 0 0;
+			display: grid;
+			gap: 0.75rem;
+		}
+
+		.about-highlights li {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			color: var(--text-secondary);
+			font-size: 0.98rem;
+		}
+
+		.about-highlights i {
+			color: var(--primary);
+			font-size: 0.9rem;
+		}
 
         .about-stats {
             display: grid;
@@ -946,6 +996,10 @@
                 text-align: center;
             }
 
+			section {
+				padding: 4rem 1.5rem;
+			}
+
             .about-stats {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -954,24 +1008,50 @@
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
-        }
-    </style>
-</head>
+		}
+	</style>
+	<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Aziz Hazim",
+  "url": "https://azizhazim.com",
+  "image": "https://azizhazim.com/og-image.png",
+  "jobTitle": "AI Product Builder & iOS Developer",
+  "sameAs": [
+    "https://github.com/azizhazim",
+    "https://www.linkedin.com/in/aziz-hazim/"
+  ],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Texas State University - McCoy College of Business"
+  },
+  "knowsAbout": [
+    "AI",
+    "iOS development",
+    "Chrome extensions",
+    "OpenAI",
+    "Web scraping",
+    "Automation"
+  ]
+}
+	</script>
+	</head>
 <body>
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo"><img src="favicon.svg" alt="Aziz Hazim" class="logo-icon"></div>
-            <ul class="nav-links">
+	        <ul class="nav-links" id="nav-links">
                 <li><a href="#showcase">Work</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact" class="nav-cta">Let's Connect</a></li>
-            </ul>
-            <button class="mobile-menu" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
+	        </ul>
+	        <button class="mobile-menu" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+	            <i class="fas fa-bars" aria-hidden="true"></i>
+	        </button>
         </div>
     </nav>
 
@@ -980,13 +1060,13 @@
         <div class="hero-bg">
             <div class="particles" id="particles"></div>
         </div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-bolt"></i> Building AI-powered solutions
-            </div>
-            <h1>Aziz <span>Hazim</span></h1>
-            <p class="hero-title">AI & iOS App Developer</p>
-            <p class="hero-subtitle">I build fast, polished software that solves real-world problems. From intelligent Chrome extensions to production-ready iOS apps.</p>
+	        <div class="hero-content">
+	            <div class="hero-badge">
+	                <i class="fas fa-bolt" aria-hidden="true"></i> Building AI-powered solutions
+	            </div>
+	            <h1>Aziz <span>Hazim</span></h1>
+	            <p class="hero-title">AI Product Builder &amp; iOS Developer</p>
+	            <p class="hero-subtitle">Information Systems &amp; Technology (BBA, Texas State '25) grad building AI-powered Chrome extensions, iOS apps, and automation tools used by 8,000+ people.</p>
             <div class="hero-buttons">
                 <a href="#showcase" class="btn btn-primary">View My Work</a>
                 <a href="#contact" class="btn btn-secondary">Get In Touch</a>
@@ -1011,8 +1091,12 @@
                     </div>
                     <div class="showcase-content">
                         <h3>Apex Vision AI</h3>
-                        <p>Revolutionary AI-powered Chrome extension and iOS app for intelligent image analysis and real-time vision recognition. Extract valuable insights from any image with cutting-edge AI technology.</p>
-                        <div class="showcase-tags">
+	                        <p>Revolutionary AI-powered Chrome extension and iOS app for intelligent image analysis and real-time vision recognition. Extract valuable insights from any image with cutting-edge AI technology.</p>
+	                        <ul class="showcase-metrics">
+							<li><span>8,000+</span> users across Chrome &amp; iOS</li>
+							<li><span>4.9</span> average rating from students</li>
+	                        </ul>
+	                        <div class="showcase-tags">
                             <span class="tag">Chrome Extension</span>
                             <span class="tag">iOS App</span>
                             <span class="tag">AI Vision Models</span>
@@ -1033,22 +1117,22 @@
             <div class="showcase-small-card reveal">
                 <i class="fas fa-robot"></i>
                 <h4>AI Lead Generator</h4>
-                <p>Automated lead extraction and enrichment tool powered by GPT models for B2B sales teams.</p>
+	                <p>AI system that scrapes, filters, and enriches leads so sales teams focus on high-intent prospects.</p>
             </div>
             <div class="showcase-small-card reveal">
                 <i class="fas fa-spider"></i>
                 <h4>Web Scraping Solutions</h4>
-                <p>Intelligent web scraping automation with anti-detection and data parsing capabilities.</p>
+	                <p>Production-ready scrapers with scheduling, anti-blocking, and clean, structured data outputs.</p>
             </div>
             <div class="showcase-small-card reveal">
                 <i class="fas fa-brain"></i>
                 <h4>Vision Recognition Tools</h4>
-                <p>Custom AI models for image classification, OCR, and visual data extraction.</p>
+	                <p>Custom models for classification, OCR, and turning raw images into structured, searchable data.</p>
             </div>
             <div class="showcase-small-card reveal">
                 <i class="fas fa-code"></i>
                 <h4>Custom API Solutions</h4>
-                <p>Backend services and APIs built with Python/Flask and Firebase for scalable applications.</p>
+	                <p>Fast, reliable APIs for AI features, automation, and dashboards using Python, Flask, and Firebase.</p>
             </div>
         </div>
     </section>
@@ -1156,13 +1240,18 @@
                     <i class="fas fa-user"></i>
                 </div>
             </div>
-            <div class="about-content">
-                <span class="section-badge">About Me</span>
-                <h2>Building the Future, One Line at a Time</h2>
-                <p>I'm an Information Systems & Technology graduate (BBA, Class of 2025) and full-stack developer specializing in iOS apps and AI-powered solutions. My journey took me from Penn State to Texas State University's McCoy College of Business, where I honed my skills in technology and business strategy.</p>
-                <p>My superpower? Taking complex real-world problems and delivering clear, efficient solutions in record time. Whether it's a Chrome extension with 8,000+ users or a complex AI integration, I focus on shipping polished products that actually solve problems.</p>
+	            <div class="about-content">
+	                <span class="section-badge">About Me</span>
+	                <h2>Building the Future, One Line at a Time</h2>
+	                <p>I'm an Information Systems &amp; Technology graduate (BBA, Class of 2025) and full-stack developer specializing in iOS apps and AI-powered solutions. My journey took me from Penn State to Texas State University's McCoy College of Business, where I honed my skills in technology and business strategy.</p>
+	                <p>My superpower? Taking complex real-world problems and delivering clear, efficient solutions in record time. Whether it's a Chrome extension with 8,000+ users or a complex AI integration, I focus on shipping polished products that actually solve problems.</p>
+	                <ul class="about-highlights">
+	                    <li><i class="fas fa-check-circle" aria-hidden="true"></i><span>Blend of business and technical skills from Information Systems &amp; Technology at McCoy College of Business.</span></li>
+	                    <li><i class="fas fa-check-circle" aria-hidden="true"></i><span>Hands-on experience shipping AI-powered products like Apex Vision AI, Aura Lead Gen, and Deal Flip AI.</span></li>
+	                    <li><i class="fas fa-check-circle" aria-hidden="true"></i><span>Bias toward shipping quickly, iterating with users, and focusing on real-world impact.</span></li>
+	                </ul>
 
-                <div class="about-stats">
+	                <div class="about-stats">
                     <div class="stat">
                         <div class="stat-number">8K+</div>
                         <div class="stat-label">Users</div>
@@ -1180,8 +1269,8 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
+	    <!-- Skills Section -->
+	    <section id="skills" class="section-alt">
         <div class="section-header reveal">
             <span class="section-badge">Expertise</span>
             <h2 class="section-title">Skills & Technologies</h2>
@@ -1204,8 +1293,8 @@
         </div>
     </section>
 
-    <!-- Social Proof Section -->
-    <section id="proof">
+	    <!-- Social Proof Section -->
+	    <section id="proof" class="section-alt">
         <div class="section-header reveal">
             <span class="section-badge">Impact</span>
             <h2 class="section-title">By the Numbers</h2>
@@ -1236,13 +1325,13 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
+	    <!-- Contact Section -->
+	    <section id="contact" class="section-alt">
         <div class="contact-container">
-            <div class="contact-info reveal">
-                <span class="section-badge">Get in Touch</span>
-                <h2>Let's Build Something Great</h2>
-                <p>Have a project in mind? I'm always open to discussing new opportunities, creative ideas, or partnerships.</p>
+	            <div class="contact-info reveal">
+	                <span class="section-badge">Get in Touch</span>
+	                <h2>Let's Build Something Great</h2>
+	                <p>Open to collaborations, AI product work, and iOS / Chrome extension projects. Share a bit about what you're building and I'll get back to you.</p>
 
                 <div class="contact-links">
                     <a href="https://github.com/azizhazim" class="contact-link" target="_blank">
@@ -1307,7 +1396,12 @@
     <script>
         // Mobile Menu Toggle
         function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
+	            const navLinks = document.querySelector('.nav-links');
+	            const button = document.querySelector('.mobile-menu');
+	            const isOpen = navLinks.classList.toggle('active');
+	            if (button) {
+	                button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+	            }
         }
 
         // Create floating particles
@@ -1357,15 +1451,12 @@
             });
         });
 
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(10, 10, 15, 0.95)';
-            } else {
-                nav.style.background = 'rgba(10, 10, 15, 0.8)';
-            }
-        });
+	        // Navbar background on scroll
+	        window.addEventListener('scroll', () => {
+	            const nav = document.querySelector('nav');
+	            if (!nav) return;
+	            nav.classList.toggle('scrolled', window.scrollY > 100);
+	        });
     </script>
 </body>
 </html>
