@@ -67,6 +67,12 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        html, body {
+            max-width: 100%;
+            position: relative;
         }
 
         body {
@@ -1299,12 +1305,67 @@
             }
 
             #particles {
-                opacity: 0.3;
+                opacity: 0.2;
             }
 
             .hero::before {
-                width: 300px;
-                height: 300px;
+                width: 250px;
+                height: 250px;
+                top: -5%;
+                right: -20%;
+            }
+
+            /* Disable 3D transforms on mobile for better performance */
+            .work-card:hover,
+            .service-card:hover,
+            .process-card:hover,
+            .product-frame:hover {
+                transform: translateY(-4px) !important;
+            }
+
+            /* Reduce animation complexity */
+            .hero h1 {
+                animation: none;
+                background: var(--ink);
+                -webkit-text-fill-color: var(--ink);
+            }
+
+            /* Disable parallax on mobile */
+            .hero-visual,
+            .hero-copy {
+                transform: none !important;
+            }
+
+            /* Simplify floating animations */
+            .hero-visual .product-frame,
+            .floating-proof {
+                animation: none;
+            }
+
+            /* Ensure buttons don't expand too much */
+            .btn-primary::before {
+                display: none;
+            }
+
+            /* Reduce blur for better mobile performance */
+            .site-nav {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+
+            .glass,
+            .metric,
+            .work-card,
+            .service-card,
+            .process-card,
+            .case-study {
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+            }
+
+            /* Fix monogram shine effect on mobile */
+            .monogram::before {
+                animation: none;
             }
         }
 
@@ -1322,10 +1383,13 @@
                 align-items: stretch;
                 gap: 0;
                 padding: 0.5rem;
-                background: var(--surface);
+                background: rgba(255, 255, 255, 0.95);
                 border: 1px solid var(--line);
                 border-radius: var(--radius);
                 box-shadow: var(--shadow);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                z-index: 1001;
             }
 
             .nav-links.active {
@@ -1335,6 +1399,10 @@
             .nav-links a {
                 display: block;
                 padding: 0.85rem;
+            }
+
+            .nav-links a::after {
+                display: none;
             }
 
             .nav-links .nav-cta {
@@ -1367,8 +1435,16 @@
                 margin: -3rem 1rem 0 auto;
             }
 
+            .case-study {
+                padding: 1.5rem;
+            }
+
             .case-study:nth-of-type(odd) .case-media {
                 order: initial;
+            }
+
+            .case-study::before {
+                display: none;
             }
 
             .work-grid,
@@ -1377,11 +1453,32 @@
             .source-strip-inner {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+
+            /* Reduce button padding on tablet */
+            .btn {
+                padding: 0.7rem 1.2rem;
+            }
+
+            /* Fix section heading underline */
+            .section-head h2::after {
+                width: 40px;
+                height: 3px;
+            }
+
+            /* Ensure pills wrap properly */
+            .pill-row {
+                gap: 0.4rem;
+            }
+
+            .pill {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.72rem;
+            }
         }
 
         @media (max-width: 660px) {
             section {
-                padding: 4rem 1rem;
+                padding: 3rem 1rem;
             }
 
             .nav-inner {
@@ -1392,9 +1489,27 @@
                 display: none;
             }
 
+            .hero {
+                padding-top: 2rem;
+            }
+
             .hero h1 {
                 font-size: clamp(2.8rem, 15vw, 3.7rem);
                 letter-spacing: -0.07em;
+            }
+
+            .hero-lede {
+                font-size: 1.05rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
             }
 
             .hero-meta,
@@ -1406,21 +1521,144 @@
                 grid-template-columns: 1fr;
             }
 
+            .metric {
+                padding: 0.9rem;
+            }
+
+            .metric strong {
+                font-size: 1.1rem;
+            }
+
             .floating-proof {
                 width: calc(100% - 1.25rem);
                 margin-top: -1.5rem;
             }
 
+            .eyebrow {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.7rem;
+            }
+
+            .section-head {
+                gap: 1.5rem;
+            }
+
+            .section-head h2 {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
+            }
+
+            .section-head h2::after {
+                width: 30px;
+                height: 2px;
+                bottom: -6px;
+            }
+
+            .case-study {
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+
+            .case-copy {
+                padding: 0.5rem;
+            }
+
+            .case-copy h3 {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+
+            .case-stats {
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .case-stats div {
+                padding: 0.6rem;
+            }
+
+            .pill {
+                padding: 0.35rem 0.65rem;
+                font-size: 0.7rem;
+                min-height: 28px;
+            }
+
+            .work-card-body,
+            .service-card,
+            .process-card {
+                padding: 0.9rem;
+            }
+
             .contact-panel {
-                padding: 0.75rem;
+                padding: 1rem;
+            }
+
+            .contact-copy {
+                padding: 1rem;
+            }
+
+            .contact-copy h2 {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
+            }
+
+            .contact-form {
+                padding: 0.9rem;
             }
 
             .contact-section {
-                padding-bottom: 11rem;
+                padding-bottom: 4rem;
+            }
+
+            .monogram {
+                min-height: 200px;
+                font-size: 4rem;
+            }
+
+            .about-copy {
+                padding: 1.25rem;
+            }
+
+            .about-copy h2 {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
             }
 
             footer {
                 flex-direction: column;
+                padding: 2rem 1rem;
+            }
+
+            /* Ensure no horizontal overflow */
+            body {
+                overflow-x: hidden;
+            }
+
+            /* Disable transform effects that might cause overflow */
+            .reveal {
+                transform: none;
+                opacity: 0;
+            }
+
+            .reveal.active {
+                opacity: 1;
+            }
+
+            /* Fix potential button overflow */
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.65rem 1rem;
+                min-height: 44px;
+            }
+
+            /* Ensure images don't overflow */
+            .case-media img,
+            .work-card img,
+            .product-frame img {
+                width: 100%;
+                height: auto;
+            }
+
+            /* Fix potential text overflow */
+            h1, h2, h3, h4, h5, h6 {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
         }
     </style>
@@ -1837,18 +2075,7 @@
             });
         });
 
-        // Scroll progress indicator
-        const scrollProgress = document.querySelector('.scroll-progress');
-
-        window.addEventListener("scroll", () => {
-            nav.classList.toggle("scrolled", window.scrollY > 24);
-
-            // Update scroll progress
-            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = window.scrollY;
-            const progress = (scrolled / scrollHeight) * 100;
-            scrollProgress.style.transform = `scaleX(${progress / 100})`;
-        });
+        // Scroll handling moved to optimized version at the end of the script
 
         // Enhanced reveal animation with stagger
         const observer = new IntersectionObserver((entries) => {
@@ -1866,7 +2093,7 @@
             observer.observe(element);
         });
 
-        // Animated particle background
+        // Animated particle background (reduce count on mobile)
         const canvas = document.createElement('canvas');
         canvas.id = 'particles';
         document.body.appendChild(canvas);
@@ -1876,7 +2103,7 @@
         canvas.height = window.innerHeight;
 
         const particles = [];
-        const particleCount = 60;
+        const particleCount = window.innerWidth < 768 ? 30 : 60;
 
         class Particle {
             constructor() {
@@ -2004,67 +2231,73 @@
             metricsObserver.observe(metric);
         });
 
-        // Add smooth 3D tilt effect to cards
-        document.querySelectorAll('.work-card, .service-card, .process-card, .product-frame').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+        // Add smooth 3D tilt effect to cards (desktop only)
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.work-card, .service-card, .process-card, .product-frame').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
 
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
             });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
-        });
-
-        // Add glowing cursor effect
-        const cursor = document.createElement('div');
-        cursor.className = 'custom-cursor';
-        document.body.appendChild(cursor);
-
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function updateCursor() {
-            cursorX += (mouseX - cursorX) * 0.1;
-            cursorY += (mouseY - cursorY) * 0.1;
-
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-
-            requestAnimationFrame(updateCursor);
         }
 
-        updateCursor();
+        // Add glowing cursor effect (desktop only)
+        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+            const cursor = document.createElement('div');
+            cursor.className = 'custom-cursor';
+            document.body.appendChild(cursor);
 
-        // Parallax effect for hero section
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function updateCursor() {
+                cursorX += (mouseX - cursorX) * 0.1;
+                cursorY += (mouseY - cursorY) * 0.1;
+
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+
+                requestAnimationFrame(updateCursor);
+            }
+
+            updateCursor();
+        }
+
+        // Parallax effect for hero section (desktop only)
         const heroVisual = document.querySelector('.hero-visual');
         const heroCopy = document.querySelector('.hero-copy');
 
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
-            if (scrolled < 800) {
-                if (heroVisual) {
-                    heroVisual.style.transform = `translateY(${scrolled * 0.3}px)`;
+        if (window.innerWidth > 768) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                if (scrolled < 800) {
+                    if (heroVisual) {
+                        heroVisual.style.transform = `translateY(${scrolled * 0.3}px)`;
+                    }
+                    if (heroCopy) {
+                        heroCopy.style.transform = `translateY(${scrolled * 0.15}px)`;
+                    }
                 }
-                if (heroCopy) {
-                    heroCopy.style.transform = `translateY(${scrolled * 0.15}px)`;
-                }
-            }
-        });
+            });
+        }
 
         // Add stagger animation delay to case studies
         document.querySelectorAll('.case-study').forEach((study, index) => {
@@ -2088,16 +2321,64 @@
             });
         });
 
-        // Add hover effect to images
-        document.querySelectorAll('.case-media img, .work-card img').forEach(img => {
-            img.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.05)';
-                this.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+        // Add hover effect to images (desktop only)
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.case-media img, .work-card img').forEach(img => {
+                img.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                });
+                img.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
             });
-            img.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-            });
+        }
+
+        // Handle window resize for responsive canvas
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                // Reset particles on significant resize
+                if (Math.abs(window.innerWidth - canvas.width) > 100) {
+                    particles.length = 0;
+                    const newCount = window.innerWidth < 768 ? 30 : 60;
+                    for (let i = 0; i < newCount; i++) {
+                        particles.push(new Particle());
+                    }
+                }
+            }, 250);
         });
+
+        // Prevent horizontal scroll on mobile
+        document.body.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Optimize scroll performance on mobile
+        let ticking = false;
+        const scrollProgress = document.querySelector('.scroll-progress');
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    nav.classList.toggle("scrolled", window.scrollY > 24);
+
+                    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrolled = window.scrollY;
+                    const progress = (scrolled / scrollHeight) * 100;
+                    scrollProgress.style.transform = `scaleX(${progress / 100})`;
+
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>
