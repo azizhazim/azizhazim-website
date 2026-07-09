@@ -1326,8 +1326,20 @@
             /* Reduce animation complexity */
             .hero h1 {
                 animation: none;
-                background: var(--ink);
+                background: none;
+                -webkit-background-clip: unset;
                 -webkit-text-fill-color: var(--ink);
+                background-clip: unset;
+                color: var(--ink);
+            }
+
+            /* Fix gradient text on mobile */
+            .metric strong {
+                background: none;
+                -webkit-background-clip: unset;
+                -webkit-text-fill-color: var(--ink);
+                background-clip: unset;
+                color: var(--ink);
             }
 
             /* Disable parallax on mobile */
