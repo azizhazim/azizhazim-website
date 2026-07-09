@@ -1745,16 +1745,16 @@
                 </div>
                 <div class="hero-meta" aria-label="Public proof points">
                     <div class="metric">
-                        <strong>4.9 rating</strong>
-                        <span>Apex Vision AI public listings</span>
+                        <strong>4.9 stars</strong>
+                        <span>Average public rating</span>
                     </div>
                     <div class="metric">
-                        <strong>1.8K ratings</strong>
-                        <span>Chrome Web Store listing</span>
+                        <strong>1.8K reviews</strong>
+                        <span>Chrome Web Store reviews</span>
                     </div>
                     <div class="metric">
-                        <strong>Law Enforcement AI</strong>
-                        <span>Built for Williamson County at TXST</span>
+                        <strong>10,000+ users</strong>
+                        <span>Across all my apps</span>
                     </div>
                 </div>
             </div>
@@ -1774,7 +1774,7 @@
             <div class="source-strip-inner reveal">
                 <a class="source-item" href="https://chromewebstore.google.com/detail/ai-homework-helper-apex-v/ncaknkaehhieldhnmimbjnfgneaiijbd" target="_blank" rel="noopener">
                     <span>Chrome Listing</span>
-                    <strong>Featured extension. 4.9 rating.</strong>
+                    <strong>Featured extension. 4.9 stars.</strong>
                 </a>
                 <a class="source-item" href="https://apps.apple.com/us/app/ai-homework-helper-apex-ai/id6755402245" target="_blank" rel="noopener">
                     <span>iOS Listing</span>
@@ -1816,9 +1816,9 @@
                         <span class="pill">SwiftUI</span>
                     </div>
                     <div class="case-stats">
-                        <div><strong>Featured</strong><span>Chrome Web Store</span></div>
-                        <div><strong>4.9</strong><span>Public rating</span></div>
-                        <div><strong>10K+</strong><span>iOS downloads listed</span></div>
+                        <div><strong>4.9 stars</strong><span>Average public rating</span></div>
+                        <div><strong>1.8K</strong><span>Chrome Web Store reviews</span></div>
+                        <div><strong>10,000+</strong><span>Users across apps</span></div>
                     </div>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="https://apexvision.ai/" target="_blank" rel="noopener">Visit Apex Vision</a>
@@ -2183,64 +2183,6 @@
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-        });
-
-        // Counter animation for metrics
-        function animateCounter(element, target, duration = 2000) {
-            const start = 0;
-            const increment = target / (duration / 16);
-            let current = start;
-
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = formatNumber(target);
-                    clearInterval(timer);
-                } else {
-                    element.textContent = formatNumber(Math.floor(current));
-                }
-            }, 16);
-        }
-
-        function formatNumber(num) {
-            if (num >= 1000) {
-                return (num / 1000).toFixed(1) + 'K';
-            }
-            return num.toString();
-        }
-
-        // Observe metrics for counter animation
-        const metricsObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const strong = entry.target.querySelector('strong');
-                    const text = strong.textContent;
-
-                    // Extract number from text like "4.9 rating" or "1.8K ratings"
-                    if (text.includes('K')) {
-                        const num = parseFloat(text) * 1000;
-                        animateCounter(strong, num);
-                    } else if (!isNaN(parseFloat(text))) {
-                        const num = parseFloat(text);
-                        strong.textContent = '0';
-                        const timer = setInterval(() => {
-                            const current = parseFloat(strong.textContent);
-                            if (current >= num) {
-                                strong.textContent = text;
-                                clearInterval(timer);
-                            } else {
-                                strong.textContent = (current + 0.1).toFixed(1);
-                            }
-                        }, 30);
-                    }
-
-                    metricsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('.metric').forEach((metric) => {
-            metricsObserver.observe(metric);
         });
 
         // Add smooth 3D tilt effect to cards (desktop only)
