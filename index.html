@@ -135,6 +135,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
+            min-height: 44px;
             text-decoration: none;
             font-weight: 800;
             letter-spacing: -0.02em;
@@ -435,7 +436,7 @@
         }
 
         .source-item {
-            min-height: 112px;
+            min-height: 96px;
             padding: 1rem;
             background: rgba(255, 255, 255, 0.88);
             text-decoration: none;
@@ -475,6 +476,7 @@
         .section-head p {
             margin: 0;
             color: var(--muted);
+            max-width: 34rem;
         }
 
         .case-study {
@@ -521,8 +523,10 @@
 
         .case-copy p {
             color: var(--muted);
-            margin: 1rem 0 0;
-            font-size: 1rem;
+            margin: 0.85rem 0 0;
+            font-size: 0.98rem;
+            line-height: 1.55;
+            max-width: 36rem;
         }
 
         .pill-row {
@@ -624,6 +628,7 @@
             color: var(--muted);
             margin: 0.65rem 0 0;
             font-size: 0.92rem;
+            line-height: 1.48;
         }
 
         .label {
@@ -732,6 +737,7 @@
         .about-copy p {
             color: var(--muted);
             margin: 1rem 0 0;
+            max-width: 52rem;
         }
 
         .about-list {
@@ -800,9 +806,13 @@
         }
 
         .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
             color: #fff;
             text-decoration: none;
             font-weight: 800;
+            overflow-wrap: anywhere;
         }
 
         .contact-form {
@@ -865,6 +875,9 @@
         }
 
         footer a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
             text-decoration: none;
             font-weight: 800;
         }
@@ -1077,11 +1090,11 @@
                 <span class="eyebrow">AI product builder based in Texas</span>
                 <h1>Aziz Hazim</h1>
                 <p class="hero-lede">
-                    I build practical AI products, iOS apps, Chrome extensions, and automation systems. My work spans student study tools, resale intelligence, local business websites, and data workflows that move from prototype to real users.
+                    I build practical AI products across iOS, Chrome, automation, and the web.
                 </p>
                 <div class="hero-actions">
                     <a class="btn btn-primary" href="#work">See Featured Work</a>
-                    <a class="btn btn-secondary" href="#contact">Tell Me What You Are Building</a>
+                    <a class="btn btn-secondary" href="#contact">Start a Project</a>
                 </div>
                 <div class="hero-meta" aria-label="Public proof points">
                     <div class="metric">
@@ -1113,20 +1126,20 @@
         <div class="source-strip" aria-label="Public proof links">
             <div class="source-strip-inner reveal">
                 <a class="source-item" href="https://chromewebstore.google.com/detail/ai-homework-helper-apex-v/ncaknkaehhieldhnmimbjnfgneaiijbd" target="_blank" rel="noopener">
-                    <span>Chrome Web Store</span>
-                    <strong>Featured Apex Vision AI extension with 4.9 rating.</strong>
+                    <span>Chrome Listing</span>
+                    <strong>Featured extension. 4.9 rating.</strong>
                 </a>
-                <a class="source-item" href="https://apps.apple.com/br/app/ai-homework-helper-apex-ai/id6755402245?l=en-GB" target="_blank" rel="noopener">
-                    <span>App Store</span>
-                    <strong>Apex Vision AI iOS app for answers, flashcards, and study guides.</strong>
+                <a class="source-item" href="https://apps.apple.com/us/app/ai-homework-helper-apex-ai/id6755402245" target="_blank" rel="noopener">
+                    <span>iOS Listing</span>
+                    <strong>Apex Vision AI on the App Store.</strong>
                 </a>
                 <a class="source-item" href="https://github.com/azizhazim" target="_blank" rel="noopener">
                     <span>GitHub</span>
-                    <strong>Portfolio, public repos, local business sites, and open-source work.</strong>
+                    <strong>Public repos and shipped site work.</strong>
                 </a>
                 <a class="source-item" href="https://www.mccoy.txst.edu/news/archive/2025/2025-06-25-wilco-capstone-ai-tools.html" target="_blank" rel="noopener">
                     <span>Texas State</span>
-                    <strong>Named contributor on McCoy College AI image-comparison capstone.</strong>
+                    <strong>AI image-comparison capstone contributor.</strong>
                 </a>
             </div>
         </div>
@@ -1137,7 +1150,7 @@
                     <span class="eyebrow">Featured work</span>
                     <h2>Products with public proof, not placeholder cards.</h2>
                 </div>
-                <p>These are the projects that best show the shape of my work: AI workflows, polished interfaces, practical automation, and distribution across web, Chrome, and iOS.</p>
+                <p>A few shipped projects across web, Chrome, and iOS.</p>
             </div>
 
             <article class="case-study reveal">
@@ -1147,7 +1160,7 @@
                 <div class="case-copy">
                     <span class="label">AI study platform</span>
                     <h3>Apex Vision AI</h3>
-                    <p>A cross-platform study assistant with a Chrome extension, iOS app, on-page study tools, image solving, essay support, flashcards, practice exams, and step-by-step explanations for students.</p>
+                    <p>Chrome extension and iOS app for study help, image solving, flashcards, practice exams, and step-by-step explanations.</p>
                     <div class="pill-row" aria-label="Apex Vision AI technologies">
                         <span class="pill">Chrome extension</span>
                         <span class="pill">iOS app</span>
@@ -1163,6 +1176,7 @@
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="https://apexvision.ai/" target="_blank" rel="noopener">Visit Apex Vision</a>
                         <a class="btn btn-secondary" href="https://chromewebstore.google.com/detail/ai-homework-helper-apex-v/ncaknkaehhieldhnmimbjnfgneaiijbd" target="_blank" rel="noopener">Chrome Listing</a>
+                        <a class="btn btn-secondary" href="https://apps.apple.com/us/app/ai-homework-helper-apex-ai/id6755402245" target="_blank" rel="noopener">iOS Listing</a>
                     </div>
                 </div>
             </article>
@@ -1174,7 +1188,7 @@
                 <div class="case-copy">
                     <span class="label">Resale intelligence</span>
                     <h3>DealFlip AI</h3>
-                    <p>An AI deal-scoring product for Facebook Marketplace flippers. It turns messy local listings into a ranked view of resale range, risk signals, confidence, and suggested first offer.</p>
+                    <p>AI deal scoring for Marketplace flippers: resale range, risk signals, confidence, and suggested first offer.</p>
                     <div class="pill-row" aria-label="DealFlip AI capabilities">
                         <span class="pill">Marketplace scanning</span>
                         <span class="pill">Deal scoring</span>
@@ -1201,7 +1215,7 @@
                     <span class="eyebrow">Selected builds</span>
                     <h2>Websites, automation systems, and applied AI projects.</h2>
                 </div>
-                <p>A portfolio should show the kind of problems you actually solve. These pieces round out the product work with local business, data, and AI implementation examples.</p>
+                <p>More examples across local business, public code, data workflows, and applied AI.</p>
             </div>
 
             <div class="work-grid">
@@ -1210,7 +1224,7 @@
                     <div class="work-card-body">
                         <span class="label">Local business site</span>
                         <h3>Hazim Auto Service</h3>
-                        <p>Auto repair website with stronger positioning, real service details, call-first conversion, and local trust signals.</p>
+                        <p>Local service site built around calls, directions, reviews, and trust.</p>
                     </div>
                 </a>
 
@@ -1219,7 +1233,7 @@
                     <div class="work-card-body">
                         <span class="label">Public code</span>
                         <h3>GitHub Portfolio</h3>
-                        <p>Public repositories spanning portfolio sites, Java environmental projects, TypeScript builds, and web experiments.</p>
+                        <p>Public repos for site work, Java projects, TypeScript builds, and experiments.</p>
                     </div>
                 </a>
 
@@ -1228,7 +1242,7 @@
                     <div class="work-card-body">
                         <span class="label">Applied AI capstone</span>
                         <h3>Image Comparison Tool</h3>
-                        <p>Named contributor on a Texas State team building image comparison workflows for evidence review and triage.</p>
+                        <p>Texas State team project for image comparison and review workflows.</p>
                     </div>
                 </a>
 
@@ -1236,7 +1250,7 @@
                     <div class="work-card-body">
                         <span class="label">Lead generation</span>
                         <h3>AI Lead Workflow</h3>
-                        <p>Scraping, enrichment, filtering, and automation systems that turn raw sources into prioritized lead lists for sales teams.</p>
+                        <p>Scrape, enrich, filter, and prioritize leads.</p>
                         <div class="pill-row">
                             <span class="pill">Python</span>
                             <span class="pill">Scraping</span>
@@ -1249,7 +1263,7 @@
                     <div class="work-card-body">
                         <span class="label">Browser automation</span>
                         <h3>Chrome Extension Systems</h3>
-                        <p>On-page UI, side panels, content scripts, account flows, and model-backed interactions for browser-native products.</p>
+                        <p>On-page UI, side panels, content scripts, and model-backed actions.</p>
                         <div class="pill-row">
                             <span class="pill">JavaScript</span>
                             <span class="pill">Chrome APIs</span>
@@ -1262,7 +1276,7 @@
                     <div class="work-card-body">
                         <span class="label">Custom APIs</span>
                         <h3>AI Backends</h3>
-                        <p>Practical API layers for AI features, user workflows, subscriptions, Firebase data, webhooks, and dashboard logic.</p>
+                        <p>API layers for AI features, Firebase data, webhooks, and dashboards.</p>
                         <div class="pill-row">
                             <span class="pill">Python</span>
                             <span class="pill">Firebase</span>
@@ -1280,39 +1294,39 @@
                         <span class="eyebrow">What I can build</span>
                         <h2>Useful software without the agency drag.</h2>
                     </div>
-                    <p>I am best suited for practical builds where the goal is to ship a working product, validate a workflow, or automate something that currently costs too much time.</p>
+                    <p>Practical builds for products, workflows, and repetitive work.</p>
                 </div>
 
                 <div class="services-grid">
                     <article class="service-card reveal">
                         <span class="number">01</span>
                         <h3>AI product MVPs</h3>
-                        <p>Turn a product idea into a working web or mobile experience with model routing, prompts, storage, auth, and payment-ready flows.</p>
+                        <p>Working web or mobile MVPs with auth, storage, prompts, and payments.</p>
                     </article>
                     <article class="service-card reveal">
                         <span class="number">02</span>
                         <h3>Chrome extensions</h3>
-                        <p>Build browser-native tools with content scripts, side panels, floating UI, image/text capture, and account-backed features.</p>
+                        <p>Side panels, floating UI, content scripts, capture flows, and accounts.</p>
                     </article>
                     <article class="service-card reveal">
                         <span class="number">03</span>
                         <h3>iOS apps</h3>
-                        <p>Ship SwiftUI apps for AI workflows, camera-based inputs, study tools, alerts, dashboards, and lightweight subscription products.</p>
+                        <p>SwiftUI apps for AI workflows, camera input, alerts, and dashboards.</p>
                     </article>
                     <article class="service-card reveal">
                         <span class="number">04</span>
                         <h3>Scrapers and data pipelines</h3>
-                        <p>Collect, clean, score, and route messy web data into dashboards, spreadsheets, alerts, or APIs that teams can use daily.</p>
+                        <p>Collect, clean, score, and route messy web data.</p>
                     </article>
                     <article class="service-card reveal">
                         <span class="number">05</span>
                         <h3>Local business sites</h3>
-                        <p>Replace thin brochure pages with search-friendly service pages, trust proof, clear conversion paths, and maintainable static sites.</p>
+                        <p>Fast service pages with trust proof and clear conversion paths.</p>
                     </article>
                     <article class="service-card reveal">
                         <span class="number">06</span>
                         <h3>Automation consulting</h3>
-                        <p>Audit a manual process, find the highest-leverage automation point, and build a simple workflow that reduces repeat work.</p>
+                        <p>Find the bottleneck, automate it, and keep the workflow simple.</p>
                     </article>
                 </div>
 
@@ -1354,12 +1368,11 @@
                 <div class="about-copy reveal">
                     <span class="eyebrow">About</span>
                     <h2>I like building the version that actually ships.</h2>
-                    <p>I am an Information Systems and Technology graduate from Texas State University's McCoy College of Business, focused on practical AI products and automation. My projects combine product design, model integration, browser workflows, iOS interfaces, and business context.</p>
-                    <p>That mix matters because most useful software is not just a model call. It is the messy work around it: input handling, fast UX, data storage, pricing, deployment, trust, and iteration after real users start clicking.</p>
+                    <p>I am a Texas State Information Systems and Technology graduate focused on practical AI products, automation, iOS apps, and browser workflows.</p>
                     <ul class="about-list">
-                        <li><span>1</span><div><strong>Apex Vision AI:</strong> Chrome and iOS study tools with public listing proof and active product distribution.</div></li>
-                        <li><span>2</span><div><strong>DealFlip AI:</strong> marketplace intelligence product that scores resale opportunities and risk signals.</div></li>
-                        <li><span>3</span><div><strong>Texas State capstone:</strong> contributor to an applied AI image-comparison project featured by McCoy College.</div></li>
+                        <li><span>1</span><div><strong>Apex Vision AI:</strong> Chrome and iOS study product.</div></li>
+                        <li><span>2</span><div><strong>DealFlip AI:</strong> resale scoring and deal intelligence.</div></li>
+                        <li><span>3</span><div><strong>Texas State:</strong> applied AI image-comparison capstone.</div></li>
                     </ul>
                 </div>
             </div>
@@ -1370,7 +1383,7 @@
                 <div class="contact-copy">
                     <span class="eyebrow">Contact</span>
                     <h2>Have a product or workflow you want built?</h2>
-                    <p>Send a short note with what you are trying to build, what exists today, and what outcome would make the project successful. I will reply with a practical next step.</p>
+                    <p>Send the goal, what exists today, and what would make it successful.</p>
                     <div class="contact-links">
                         <a href="mailto:contact@azizhazim.com">contact@azizhazim.com</a>
                         <a href="https://github.com/azizhazim" target="_blank" rel="noopener">github.com/azizhazim</a>
