@@ -30,7 +30,7 @@
         }
 
         main {
-            width: min(1180px, calc(100% - 2rem));
+            width: min(1240px, calc(100% - 2rem));
             margin: 0 auto;
             padding: 2rem 0 3rem;
         }
@@ -121,7 +121,7 @@
 
         .card strong {
             display: block;
-            font-size: 2rem;
+            font-size: 1.8rem;
             line-height: 1;
             letter-spacing: -0.04em;
         }
@@ -191,15 +191,28 @@
             grid-column: 1 / -1;
         }
 
-        @media (max-width: 820px) {
+        .nowrap {
+            white-space: nowrap;
+        }
+
+        @media (max-width: 920px) {
             header,
             .controls {
                 grid-template-columns: 1fr;
                 align-items: stretch;
             }
 
-            .cards,
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
             .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .cards {
                 grid-template-columns: 1fr;
             }
         }
@@ -246,6 +259,18 @@
             return new Intl.NumberFormat().format(value || 0);
         }
 
+        function formatDuration(seconds) {
+            const total = Math.round(Number(seconds || 0));
+            if (total < 60) return `${total}s`;
+            const minutes = Math.floor(total / 60);
+            const remainder = total % 60;
+            return `${minutes}m ${remainder}s`;
+        }
+
+        function formatPercent(value) {
+            return `${Number(value || 0).toFixed(Number(value || 0) % 1 ? 1 : 0)}%`;
+        }
+
         function escapeHtml(value) {
             return String(value ?? "").replace(/[&<>"']/g, (char) => ({
                 "&": "&amp;",
@@ -256,43 +281,109 @@
             }[char]));
         }
 
+        function metricValue(value, type) {
+            if (type === "duration") return formatDuration(value);
+            if (type === "percent") return formatPercent(value);
+            return formatNumber(value);
+        }
+
         function renderTotals(totals) {
             const cards = [
                 ["Page views", totals.pageViews],
                 ["Visitors", totals.uniqueVisitors],
                 ["Sessions", totals.sessions],
+                ["Engaged sessions", totals.engagedSessions],
+                ["Avg active time", totals.avgActiveSeconds, "duration"],
+                ["Avg scroll depth", totals.avgScrollDepth, "percent"],
+                ["CTA clicks", totals.ctaClicks],
+                ["Contact intent rate", totals.contactIntentRate, "percent"],
                 ["Outbound clicks", totals.outboundClicks],
+                ["Contact clicks", totals.contactClicks],
+                ["Form starts", totals.formStarts],
+                ["Form submits", totals.formSubmits],
             ];
 
-            totalsEl.innerHTML = cards.map(([label, value]) => `
+            totalsEl.innerHTML = cards.map(([label, value, type]) => `
                 <article class="card">
-                    <strong>${formatNumber(value)}</strong>
+                    <strong>${metricValue(value, type)}</strong>
                     <span>${label}</span>
                 </article>
             `).join("");
         }
 
-        function renderTable(title, rows) {
-            const max = Math.max(...rows.map((row) => row.value), 1);
+        function renderTable(title, rows, valueLabel = "Count") {
+            const max = Math.max(...rows.map((row) => Number(row.value || 0)), 1);
             return `
                 <article class="panel">
                     <h2>${escapeHtml(title)}</h2>
                     <table>
                         <thead>
-                            <tr><th>Item</th><th>Count</th><th>Share</th></tr>
+                            <tr><th>Item</th><th>${escapeHtml(valueLabel)}</th><th>Share</th></tr>
                         </thead>
                         <tbody>
-                            ${rows.length ? rows.map((row) => `
-                                <tr>
-                                    <td>${escapeHtml(row.label)}</td>
-                                    <td>${formatNumber(row.value)}</td>
-                                    <td><div class="bar"><span style="width:${Math.max(4, Math.round((row.value / max) * 100))}%"></span></div></td>
-                                </tr>
-                            `).join("") : `<tr><td colspan="3" class="muted">No data yet.</td></tr>`}
+                            ${rows.length ? rows.map((row) => {
+                                const value = Number(row.value || 0);
+                                return `
+                                    <tr>
+                                        <td>${escapeHtml(row.label)}</td>
+                                        <td class="nowrap">${formatNumber(value)}</td>
+                                        <td><div class="bar"><span style="width:${Math.max(4, Math.round((value / max) * 100))}%"></span></div></td>
+                                    </tr>
+                                `;
+                            }).join("") : `<tr><td colspan="3" class="muted">No data yet.</td></tr>`}
                         </tbody>
                     </table>
                 </article>
             `;
+        }
+
+        function renderDaily(series) {
+            return `
+                <article class="panel wide">
+                    <h2>Daily Trend</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Views</th>
+                                <th>Visitors</th>
+                                <th>Sessions</th>
+                                <th>Engaged</th>
+                                <th>CTA</th>
+                                <th>Contact</th>
+                                <th>Forms</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${series.length ? series.map((row) => `
+                                <tr>
+                                    <td>${escapeHtml(row.date)}</td>
+                                    <td>${formatNumber(row.pageViews)}</td>
+                                    <td>${formatNumber(row.uniqueVisitors)}</td>
+                                    <td>${formatNumber(row.sessions)}</td>
+                                    <td>${formatNumber(row.engagedSessions)}</td>
+                                    <td>${formatNumber(row.ctaClicks)}</td>
+                                    <td>${formatNumber(row.contactClicks)}</td>
+                                    <td>${formatNumber(row.formSubmits)}</td>
+                                </tr>
+                            `).join("") : `<tr><td colspan="8" class="muted">No data yet.</td></tr>`}
+                        </tbody>
+                    </table>
+                </article>
+            `;
+        }
+
+        function recentDetail(row) {
+            if (row.event === "engagement") {
+                return `${formatDuration(row.activeSeconds)} active / ${formatPercent(row.maxScrollPercent)} scroll`;
+            }
+            if (row.event === "section_view") {
+                return row.sectionTitle || row.page || "";
+            }
+            if (row.event === "form_start" || row.event === "form_submit") {
+                return row.formName || "Contact form";
+            }
+            return row.targetText || row.targetUrl || row.page || "";
         }
 
         function renderRecent(rows) {
@@ -301,17 +392,18 @@
                     <h2>Recent Events</h2>
                     <table>
                         <thead>
-                            <tr><th>Time</th><th>Event</th><th>Page / Target</th><th>Visitor context</th></tr>
+                            <tr><th>Time</th><th>Event</th><th>Detail</th><th>Location</th><th>Visitor context</th></tr>
                         </thead>
                         <tbody>
                             ${rows.length ? rows.map((row) => `
                                 <tr>
                                     <td>${escapeHtml(new Date(row.ts).toLocaleString())}</td>
                                     <td>${escapeHtml(row.event)}</td>
-                                    <td>${escapeHtml(row.targetUrl || row.page || "")}</td>
+                                    <td>${escapeHtml(recentDetail(row))}</td>
+                                    <td>${escapeHtml(row.linkLocation || row.linkCategory || row.referrer || "")}</td>
                                     <td>${escapeHtml([row.city, row.country, row.device, row.browser, row.os].filter(Boolean).join(" / "))}</td>
                                 </tr>
-                            `).join("") : `<tr><td colspan="4" class="muted">No recent events yet.</td></tr>`}
+                            `).join("") : `<tr><td colspan="5" class="muted">No recent events yet.</td></tr>`}
                         </tbody>
                     </table>
                 </article>
@@ -323,16 +415,27 @@
 
             const tables = data.tables;
             tablesEl.innerHTML = [
+                renderDaily(data.series),
+                renderTable("Event Types", tables.eventTypes),
                 renderTable("Top Pages", tables.pages),
+                renderTable("Engaged Pages", tables.engagedPages, "Active sec"),
+                renderTable("Sections Seen", tables.sections),
+                renderTable("CTA Clicks", tables.ctaClicks),
+                renderTable("Contact Clicks", tables.contactClicks),
+                renderTable("Outbound Clicks", tables.outboundClicks),
+                renderTable("Click Locations", tables.clickLocations),
+                renderTable("Link Categories", tables.linkCategories),
+                renderTable("Scroll Depth", tables.scrollDepth, "Sessions"),
+                renderTable("Forms", tables.forms),
                 renderTable("Referrers", tables.referrers),
+                renderTable("UTM Sources", tables.utmSources),
+                renderTable("UTM Campaigns", tables.utmCampaigns),
                 renderTable("Countries", tables.countries),
                 renderTable("Cities", tables.cities),
                 renderTable("Devices", tables.devices),
                 renderTable("Browsers", tables.browsers),
                 renderTable("Operating Systems", tables.operatingSystems),
                 renderTable("Screen Sizes", tables.screenSizes),
-                renderTable("UTM Sources", tables.utmSources),
-                renderTable("Outbound Clicks", tables.outboundClicks),
                 renderRecent(data.recent),
             ].join("");
 

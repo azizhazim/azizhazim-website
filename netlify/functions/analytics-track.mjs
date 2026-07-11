@@ -2,8 +2,17 @@ import { getStore } from "@netlify/blobs";
 import crypto from "node:crypto";
 
 const STORE_NAME = "site-analytics";
-const MAX_BODY_BYTES = 8192;
-const ALLOWED_EVENTS = new Set(["pageview", "outbound_click"]);
+const MAX_BODY_BYTES = 16384;
+const ALLOWED_EVENTS = new Set([
+  "pageview",
+  "outbound_click",
+  "cta_click",
+  "contact_click",
+  "section_view",
+  "form_start",
+  "form_submit",
+  "engagement",
+]);
 
 const jsonHeaders = {
   "Content-Type": "application/json; charset=utf-8",
@@ -102,6 +111,11 @@ function normalizeNumber(value, fallback = 0) {
   return Number.isFinite(number) ? number : fallback;
 }
 
+function clampNumber(value, min = 0, max = 1000000, fallback = 0) {
+  const number = normalizeNumber(value, fallback);
+  return Math.min(max, Math.max(min, number));
+}
+
 function getGeo(context) {
   const geo = context.geo || {};
   return {
@@ -124,11 +138,35 @@ function sanitizeCampaign(utm = {}) {
 
 function sanitizeScreen(screen = {}) {
   return {
-    width: normalizeNumber(screen.width),
-    height: normalizeNumber(screen.height),
-    viewportWidth: normalizeNumber(screen.viewportWidth),
-    viewportHeight: normalizeNumber(screen.viewportHeight),
-    pixelRatio: normalizeNumber(screen.pixelRatio, 1),
+    width: clampNumber(screen.width, 0, 10000),
+    height: clampNumber(screen.height, 0, 10000),
+    viewportWidth: clampNumber(screen.viewportWidth, 0, 10000),
+    viewportHeight: clampNumber(screen.viewportHeight, 0, 10000),
+    pixelRatio: clampNumber(screen.pixelRatio, 0, 10, 1),
+  };
+}
+
+function sanitizeVisit(visit = {}) {
+  return {
+    firstSeen: clampString(visit.firstSeen, 40),
+    visitCount: clampNumber(visit.visitCount, 1, 100000, 1),
+    isReturning: Boolean(visit.isReturning),
+  };
+}
+
+function sanitizeEngagement(engagement = {}) {
+  return {
+    reason: clampString(engagement.reason, 80),
+    durationSeconds: clampNumber(engagement.durationSeconds, 0, 86400),
+    activeSeconds: clampNumber(engagement.activeSeconds, 0, 86400),
+    maxScrollPercent: clampNumber(engagement.maxScrollPercent, 0, 100),
+    maxScrollPx: clampNumber(engagement.maxScrollPx, 0, 1000000),
+    sectionsSeen: clampNumber(engagement.sectionsSeen, 0, 100),
+    ctaClicks: clampNumber(engagement.ctaClicks, 0, 1000),
+    contactClicks: clampNumber(engagement.contactClicks, 0, 1000),
+    outboundClicks: clampNumber(engagement.outboundClicks, 0, 1000),
+    formStarts: clampNumber(engagement.formStarts, 0, 1000),
+    formSubmits: clampNumber(engagement.formSubmits, 0, 1000),
   };
 }
 
@@ -186,9 +224,19 @@ export default async (request, context) => {
     colorScheme: payload.colorScheme === "dark" ? "dark" : "light",
     connection: clampString(payload.connection, 80),
     screen: sanitizeScreen(payload.screen),
+    visit: sanitizeVisit(payload.visit),
     campaign: sanitizeCampaign(payload.utm),
-    targetUrl: eventType === "outbound_click" ? clampString(payload.targetUrl, 500) : "",
-    targetText: eventType === "outbound_click" ? clampString(payload.targetText, 160) : "",
+    targetUrl: clampString(payload.targetUrl, 500),
+    targetText: clampString(payload.targetText, 160),
+    linkCategory: clampString(payload.linkCategory, 120),
+    linkLocation: clampString(payload.linkLocation, 120),
+    isPrimaryCta: Boolean(payload.isPrimaryCta),
+    sectionId: clampString(payload.sectionId, 80),
+    sectionTitle: clampString(payload.sectionTitle, 140),
+    sectionIndex: clampNumber(payload.sectionIndex, 0, 100),
+    formName: clampString(payload.formName, 120),
+    fieldName: eventType === "form_start" ? clampString(payload.fieldName, 80) : "",
+    engagement: eventType === "engagement" ? sanitizeEngagement(payload.engagement) : null,
   };
 
   try {
@@ -213,4 +261,3 @@ export default async (request, context) => {
 export const config = {
   path: "/api/analytics/track",
 };
-
