@@ -83,7 +83,7 @@
       window.clearTimeout(timeout);
       form.removeAttribute("aria-busy");
       submit.disabled = false;
-      submit.innerHTML = 'Send message <span aria-hidden="true">↗</span>';
+      submit.textContent = "Send message";
     }
   });
 })();
