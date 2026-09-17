@@ -1,19 +1,19 @@
 {
   "name": "Aziz Hazim",
   "short_name": "Aziz",
-  "description": "AI & iOS App Developer",
+  "description": "AI products, apps, and automation by Aziz Hazim",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0f",
-  "theme_color": "#118AFF",
+  "background_color": "#101113",
+  "theme_color": "#101113",
   "icons": [
     {
-      "src": "web-app-manifest-192x192.png",
+      "src": "web-app-manifest-192x192.png?v=20260916",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "web-app-manifest-512x512.png",
+      "src": "web-app-manifest-512x512.png?v=20260916",
       "sizes": "512x512",
       "type": "image/png"
     }

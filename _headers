@@ -24,3 +24,6 @@
 
 /*.ico
   Cache-Control: public, max-age=31536000
+
+/assets/shots/*-20260916.webp
+  Cache-Control: public, max-age=31536000, immutable
