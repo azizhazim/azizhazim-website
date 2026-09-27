@@ -1,14 +1,14 @@
 # Portfolio images
 
-The September 16, 2026 portfolio uses public-page screenshots captured at
+The portfolio uses public-page screenshots captured at
 1440 × 1000 and encoded as WebP. They show the sites as they appeared at capture
 time, including illustrative product previews on the source pages.
 
-| File                   | Source                            |
-| ---------------------- | --------------------------------- |
-| apex-20260916.webp     | https://apexvision.ai/            |
-| dealflip-20260916.webp | https://dealflip.ai/              |
-| hazim-20260916.webp    | https://www.hazimautoservice.com/ |
+| File                   | Source                           | Captured           |
+| ---------------------- | -------------------------------- | ------------------ |
+| apex-20260916.webp      | https://apexvision.ai/            | September 16, 2026 |
+| dealflip-20260927.webp  | https://dealflip.ai/              | September 27, 2026 |
+| hazim-20260916.webp     | https://www.hazimautoservice.com/ | September 16, 2026 |
 
 The Chrome rating and rating count in the portfolio were checked against
 https://chromewebstore.google.com/detail/ai-homework-helper-apex-v/ncaknkaehhieldhnmimbjnfgneaiijbd
